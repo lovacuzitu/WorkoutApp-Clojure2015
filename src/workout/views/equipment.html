@@ -1,0 +1,165 @@
+<html>
+	<head>
+		<title>Gym Workout</title>
+
+<link rel="stylesheet" type="text/css" href="css/style.css">
+	</head>
+    <body class="mainStyleWorkoutApp">
+    <div id="container">
+
+<div id="header">
+            <h1>Workout</h1>
+     <div>
+          <ul id="Menu">
+           <li><a href="home.html" title="Home" onmouseover="getDescription(menu_1)">Home</a></li>
+           <li><a href="equipment.html" title="Equipment" onmouseover="getDescription(menu_2)">Equipment</a></li>
+           <li><a href="exercises.html" title="Exercises" onmouseover="getDescription(menu_3)">Exercises</a></li>
+           </ul>
+           <a id="registerBtn" href="#" style="float:right;" class="classname">Register</a>
+           <a id="loginBtn" href="#" class="classname login-visible">Login</a>
+		   <a id="logoutBtn" href="#" class="classname logout-visible">Logout</a>
+     </div>
+
+    <br class="clearfloat">
+    <div id="description">  <script>getDescription(menu_1);</script></div>
+</div>
+
+<div id="workoutContent">
+				<div style="margin-left: 10px; width: 95%;">
+
+						<div style="width:100%;margin-top:40px;float:left;">
+
+							<form id="search" method="post" action="/equipment.html">
+
+							 <h3>Search Equipment by id (using REST API):</h3>
+								<input type="text" name="equipment-search" />
+								<input type="submit" value="Search" />
+
+							</form>
+						</div>
+                    <b>Name:</b>
+                        <div id="name" style="width:100%;margin-top:10px;margin-bottom:20px;float:left;">
+						</div>
+
+             <form id="createWorkout" method="post" action="/create-workout" enctype="multipart/form-data" class="loggedIn">
+                 <h3> Insert new Workout: </h3>
+								<table style="text-align: left" border="0" cellpadding="6" cellspacing="6">
+									<tbody>
+										<tr>
+											<td>Name:</td>
+											<td><input type="text" name="workout-name" /></td>
+										</tr>
+										<tr>
+											<td>Description:</td>
+											<td><input type="textarea" name="workout-description" /></td>
+										</tr>
+                                        <tr>
+											<td>Equipment:</td>
+											<td><input type="textarea" name="workout-equipment" /></td>
+										</tr>
+										<tr>
+											<td>Image:</td>
+											<td><input type="file" name="workout-img" /></td>
+										</tr>
+									</tbody>
+								</table>
+
+								<input type="submit" value="Create Workout" />
+							</form>
+                </div>
+
+
+    <div id="login" style="display:none;position: absolute;right: 150;top: 35px;" >
+
+			<form method="post" action="/" class="form-container">
+				<div class="form-title"><h2>Sign in</h2></div>
+				<div class="form-title">Username</div>
+				<input class="form-field" type="text" name="username" /><br />
+				<div class="form-title">Password</div>
+				<input class="form-field" type="password" name="password" /><br />
+				<div class="submit-container">
+				<input class="submit-button" type="submit" value="Submit" />
+				</div>
+			</form>
+
+		</div>
+
+		<div id="register" style="display:none;position: absolute;right: 150;top: 35px;" >
+
+			<form method="post" action="/register" class="form-container">
+				<div class="form-title"><h2>Register</h2></div>
+				<div class="form-title">First name</div>
+				<input class="form-field" type="text" name="firstname" /><br />
+				<div class="form-title">Last name</div>
+				<input class="form-field" type="text" name="lastname" /><br />
+				<div class="form-title">Username</div>
+				<input class="form-field" type="text" name="username" /><br />
+				<div class="form-title">Email</div>
+				<input class="form-field" type="email" name="email" /><br />
+				<div class="form-title">Password</div>
+				<input class="form-field" type="password" name="password" /><br />
+				<div class="submit-container">
+				<input class="submit-button" type="submit" value="Submit" />
+				</div>
+			</form>
+
+		</div>
+
+		<form id="logout" method="post" action="/logout" style="visibility:hidden">
+			<input type="submit">
+		</form>
+
+</div>
+
+</div>
+
+		<script type="text/javascript" src="js/jquery-1.10.2.min.js" > </script>
+		<script type="text/javascript">
+
+				$("#logoutBtn").click(function(){
+					$("#logout").submit();
+				});
+
+				$("#loginBtn").click(function(){
+					var visible = $("#login").css("display");
+
+					if(visible == "none"){
+						$("#login").css("display", "block");
+						$("#register").css("display", "none");
+					}
+					else{
+						$("#login").css("display", "none");
+						$("#register").css("display", "none");
+					}
+				});
+
+				$("#registerBtn").click(function(){
+					var visible = $("#register").css("display");
+
+					if(visible == "none"){
+						$("#register").css("display", "block");
+						$("#login").css("display", "none");
+					}
+					else{
+						$("#register").css("display", "none");
+						$("#login").css("display", "none");
+					}
+				});
+
+		</script>
+
+        <script type="text/javascript" src="js/jquery-1.10.2.min.js" > </script>
+        <script type="text/javascript">
+                function getDescription(type) {
+                    if (document.getElementById) {
+                        document.getElementById("description").style.color = "white";
+                        var a = document.getElementById("description").style.color;
+                        document.getElementById("description").innerHTML = type }
+                    }
+                    var menu_1 = 'Two most often workouts on the world are shown below.';
+                    var menu_2 = 'Search equipments using REST API.';
+                    var menu_3 = 'Search exercises using REST API.';
+        </script>
+	</body>
+<html>
+
