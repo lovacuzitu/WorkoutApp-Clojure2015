@@ -45,3 +45,14 @@
   (mg/set-db!(mg/get-db "workouts"))
   (mc/insert "workout" {:name workout-name, :description workout-description, :equipment workout-equipment, :image workout-image}))
 
+(defn delete-workout [workout-name]
+  (mg/connect!)
+  (mg/set-db!(mg/get-db "workouts"))
+  (mc/remove "workout" {:name workout-name}))
+
+(defn update-workout [name1 description1 equipment1]
+  (mg/connect!)
+  (mg/set-db!(mg/get-db "workouts"))
+  (mc/update "workout" {:name name1}
+                       {:$set {:description description1 :equipment equipment1}}))
+

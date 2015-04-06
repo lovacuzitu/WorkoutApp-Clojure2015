@@ -76,9 +76,6 @@
 
   [:#name] (html/content (:name (service/find-equipment equipment)) )
 
-  [:#createWorkout] (if (nil? (session/get :username)) (html/remove-class "loggedIn") (html/remove-class "notLoggedIn"))
-  [:#createWorkout] (if (not-nil? (session/get :username)) (html/add-class "loggedIn") (html/add-class "notLoggedIn"))
-
   [:#logoutBtn] (if (nil? (session/get :username)) (html/remove-class "login-visible") (html/remove-class "logout-visible"))
   [:#logoutBtn] (if (not-nil? (session/get :username)) (html/add-class "login-visible") (html/add-class "logout-visible"))
   [:#loginBtn] (if (nil? (session/get :username)) (html/remove-class "logout-visible") (html/remove-class "login-visible"))
@@ -92,17 +89,39 @@
 
   [:#name] (html/content (:name (service/find-exercises exercise)) )
   [:#exercise-description] (html/content (:description (service/find-exercises exercise)) )
+
   [:#logoutBtn] (if (nil? (session/get :username)) (html/remove-class "login-visible") (html/remove-class "logout-visible"))
   [:#logoutBtn] (if (not-nil? (session/get :username)) (html/add-class "login-visible") (html/add-class "logout-visible"))
   [:#loginBtn] (if (nil? (session/get :username)) (html/remove-class "logout-visible") (html/remove-class "login-visible"))
   [:#loginBtn] (if (not-nil? (session/get :username)) (html/add-class "logout-visible") (html/add-class "login-visible"))
   ;[:#image] (html/set-attr :src(:image (nth exercise-image)) )
 
+  )
+
+(html/deftemplate workout "workout/views/workout.html" []
+
+  [:#createWorkout] (if (nil? (session/get :username)) (html/remove-class "loggedIn") (html/remove-class "notLoggedIn"))
+  [:#createWorkout] (if (not-nil? (session/get :username)) (html/add-class "loggedIn") (html/add-class "notLoggedIn"))
+
+  [:#deleteWorkout] (if (nil? (session/get :username)) (html/remove-class "loggedIn") (html/remove-class "notLoggedIn"))
+  [:#deleteWorkout] (if (not-nil? (session/get :username)) (html/add-class "loggedIn") (html/add-class "notLoggedIn"))
+
+  [:#updateWorkout] (if (nil? (session/get :username)) (html/remove-class "loggedIn") (html/remove-class "notLoggedIn"))
+  [:#updateWorkout] (if (not-nil? (session/get :username)) (html/add-class "loggedIn") (html/add-class "notLoggedIn"))
+
+  [:#workout-name1] (html/content (:name (nth (db/find-two-workouts) 0)))
+  [:#workout-description1] (html/content (:description (nth (db/find-two-workouts) 0)))
+  [:#workout-equipment1] (html/content (:equipment (nth (db/find-two-workouts) 0)))
+
   [:#logoutBtn] (if (nil? (session/get :username)) (html/remove-class "login-visible") (html/remove-class "logout-visible"))
   [:#logoutBtn] (if (not-nil? (session/get :username)) (html/add-class "login-visible") (html/add-class "logout-visible"))
   [:#loginBtn] (if (nil? (session/get :username)) (html/remove-class "logout-visible") (html/remove-class "login-visible"))
   [:#loginBtn] (if (not-nil? (session/get :username)) (html/add-class "logout-visible") (html/add-class "login-visible"))
 
+  [:#messageParagraph] (if (nil? (session/get :username)) (html/add-class "loggedIn") (html/add-class "notLoggedIn"))
+  [:#messageParagraph] (if (not-nil? (session/get :username)) (html/remove-class "loggedIn") (html/remove-class "notLoggedIn"))
+
   )
+
 
 

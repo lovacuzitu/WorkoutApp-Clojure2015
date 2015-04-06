@@ -63,6 +63,20 @@
   (response/redirect "/")
   )
 
+(noir/defpage [:post "/delete-workout"] {:keys [workout-name]}
+  (db/delete-workout workout-name)
+  (response/redirect "/")
+  )
+
+(noir/defpage [:post "/update-workout"] {:keys [name1 description1 equipment1]}
+  (db/update-workout name1 description1 equipment1)
+  (response/redirect "/")
+  )
+
+(noir/defpage "/workout.html" {}
+  (views/workout )
+  )
+
 (defn -main []
  (db/insert-initial-data)
  (server/start 7181)

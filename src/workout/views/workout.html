@@ -15,7 +15,7 @@
            <li><a href="equipment.html" title="Equipment" onmouseover="getDescription(menu_2)">Equipment</a></li>
            <li><a href="exercises.html" title="Exercises" onmouseover="getDescription(menu_3)">Exercises</a></li>
            <li><a href="workout.html" title="Workout" onmouseover="getDescription(menu_4)">Workout</a></li>
-         </ul>
+           </ul>
            <a id="registerBtn" href="#" style="float:right;" class="classname">Register</a>
            <a id="loginBtn" href="#" class="classname login-visible">Login</a>
 		   <a id="logoutBtn" href="#" class="classname logout-visible">Logout</a>
@@ -27,21 +27,59 @@
 
 <div id="workoutContent">
 
-						<div style="width:100%;margin-top:40px;float:left;">
+    <p id="messageParagraph">To see CRUD functionalities, please log in!</p>
 
-							<form id="search" method="post" action="/equipment.html">
+             <form id="createWorkout" method="post" action="/create-workout" enctype="multipart/form-data" class="loggedIn">
+                 <h3> Insert new Workout: </h3>
+								<table style="text-align: left" border="0" cellpadding="6" cellspacing="6">
+									<tbody>
+										<tr>
+											<td>Name:</td>
+											<td><input type="text" name="workout-name" /></td>
+										</tr>
+										<tr>
+											<td>Description:</td>
+											<td><input type="textarea" name="workout-description" /></td>
+										</tr>
+                                        <tr>
+											<td>Equipment:</td>
+											<td><input type="textarea" name="workout-equipment" /></td>
+										</tr>
+										<tr>
+											<td>Image:</td>
+											<td><input type="file" name="workout-img" /></td>
+										</tr>
+									</tbody>
+								</table>
 
-							 <h3>Search Equipment by id (using REST API):</h3>
-								<input type="text" name="equipment-search" />
-								<input type="submit" value="Search" />
+								<input type="submit" value="Create Workout" />
+			</form>
 
-							</form>
-						</div>
-                    <b>Name:</b>
-                        <p id="name" style="width:100%;margin-top:10px;margin-bottom:20px;float:left;">
-						</p>
+            <form id="deleteWorkout" method="post" action="/delete-workout">
+
+							 <h3>Delete workout by name: </h3>
+								<input type="text" name="workout-name" />
+								<input type="submit" value="Delete Workout" />
+
+			</form>
+
+            <form id="updateWorkout" method="post" action="/update-workout">
+                 <h3> Update workout by name: </h3>
+                            <div style="float:left; margin-left:10px; width:75%">
+                               <input type="text" name="name1" /><span id="workout-name1"></span></div>
+                            <br/>
+                              <br/>
+                            <div style="float:left; margin-left:10px; width:75%">
+                                <input type="text" name="description1" /><span id="workout-description1"></span>
+                            </div><br/><br/>
+                             <div style="float:left; margin-left:10px; width:75%">
+                                 <input type="text" name="equipment1" /><span id="workout-equipment1"></span>
+                </div><br/><br/><br/><br/><br/>
+                <input type="submit" value="Update Workout" />
+            </form>
 
 </div>
+
 
 
     <div id="login" style="display:none;position: absolute;right: 150;top: 35px;" >
